@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin.js?r=12"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>メリクリ</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 400,
+          "density": {
+            "enable": true,
+            "value_area": 800,
+          },
+        },
+        "color": {
+          "value": "#ffffff",
+        },
+        "shape": {
+          "type": "image",
+          "stroke": {
+            "width": 3,
+            "color": "#fff",
+          },
+          "polygon": {
+            "nb_sides": 5,
+          },
+          "image": {
+            "src":
+              "http://www.dynamicdigital.us/wp-content/uploads/2013/02/starburst_white_300_drop_2.png",
+            "width": 100,
+            "height": 100,
+          },
+        },
+        "opacity": {
+          "value": 0.7,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false,
+          },
+        },
+        "size": {
+          "value": 5,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 20,
+            "size_min": 0.1,
+            "sync": false,
+          },
+        },
+        "line_linked": {
+          "enable": false,
+          "distance": 50,
+          "color": "#ffffff",
+          "opacity": 0.6,
+          "width": 1,
+        },
+        "move": {
+          "enable": true,
+          "speed": 5,
+          "direction": "bottom",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": true,
+            "rotateX": 300,
+            "rotateY": 1200,
+          },
+        },
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "bubble",
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "repulse",
+          },
+          "resize": true,
+        },
+        "modes": {
+          "grab": {
+            "distance": 150,
+            "line_linked": {
+              "opacity": 1,
+            },
+          },
+          "bubble": {
+            "distance": 200,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3,
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.2,
+          },
+          "push": {
+            "particles_nb": 4,
+          },
+          "remove": {
+            "particles_nb": 2,
+          },
+        },
+      },
+      "retina_detect": true,
+    });
+  </script>
+  <script>
+    (function () {
+      function f(a, b, d, f) {
+        for (var g = (h = 0); g < a; g++) {
+          var c = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect",
+          );
+          isFirefox ? mainSVG.appendChild(c) : b.appendChild(c);
+          g > h * p && h++;
+          c.setAttributeNS(null, "fill", maskValueArr[h]);
+          c.setAttributeNS(null, "width", 16);
+          c.setAttributeNS(null, "rx", 16);
+          c.setAttributeNS(null, "ry", 16);
+          c.setAttributeNS(null, "height", 16);
+          TweenMax.set(c, {
+            transformOrigin: "50% 50%",
+            scaleY: 1 - g / 100,
+          });
+          var e = new TimelineMax();
+          e.to(c, 1.52, {
+            bezier: { type: "cubic", values: d, autoRotate: !0 },
+            ease: Linear.easeNone,
+          }).to(c, 0.1, { alpha: 0 }, "-=0.1");
+          f.add(e, g / 200);
+          isFirefox && b.appendChild(c);
+        }
+      }
+      function d(a, b) {
+        return Math.floor(Math.random() * (b - a + 1) + a);
+      }
+      select = function (a) {
+        return document.querySelector(a);
+      };
+      selectAll = function (a) {
+        return document.querySelectorAll(a);
+      };
+      container = select(".container");
+      mainSVG = select(".mainSVG");
+      merryGroup = select("#merryGroup");
+      springStroke1 = select("#springStroke1");
+      springStroke2 = select("#springStroke2");
+      springStroke3 = select("#springStroke3");
+      particleContainer = select("#particleContainer");
+      strokeMask1 = select("#strokeMask1");
+      strokeMask2 = select("#strokeMask2");
+      strokeMask3 = select("#strokeMask3");
+      allTextMasks = selectAll(".textMask *");
+      maskValueArr =
+        "#111 #222 #333 #444 #555 #666 #777 #888 #999 #aaa #bbb #ccc #ddd #eee #FFF"
+          .split(" ")
+          .reverse();
+      particleColorArray = ["#F3F1E2"];
+      particleTypeArray = ["#flake1", "#flake2", "#flake3", "#star", "#heart"];
+      particlePool = [];
+      particleCount = 0;
+      numParticles = 512;
+      isFirefox = -1 < navigator.userAgent.toLowerCase().indexOf("firefox");
+      TweenMax.set(container, {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        xPercent: -50,
+        yPercent: -50,
+      });
+      TweenMax.set("svg", { visibility: "visible" });
+      TweenMax.set(particleContainer, { x: 0, y: 0 });
+      var k = new TimelineMax({ paused: !0 }),
+        l = new TimelineMax({ paused: !0 }),
+        m = new TimelineMax({ paused: !0 }),
+        h,
+        p = Math.round(100 / maskValueArr.length),
+        q = MorphSVGPlugin.pathDataToBezier(springStroke1.getAttribute("d"), {
+          offsetX: -8,
+          offsetY: -8,
+        }),
+        n = MorphSVGPlugin.pathDataToBezier(springStroke2.getAttribute("d"), {
+          offsetX: -8,
+          offsetY: -8,
+        }),
+        r = MorphSVGPlugin.pathDataToBezier(springStroke3.getAttribute("d"), {
+          offsetX: -8,
+          offsetY: -8,
+        }),
+        e = new TimelineMax({ repeat: -1, paused: !0 });
+      e.to("#dot", 0.4, {
+        attr: { cy: 200, rx: 12, ry: 12 },
+        ease: Power2.easeOut,
+      })
+        .to("#dot", 0.3, {
+          attr: { cy: 300 },
+          ease: Power2.easeIn,
+        })
+        .set("#splashRing", { alpha: 1 })
+        .to("#dot", 1.2, {
+          attr: { rx: 76, ry: 76 },
+          alpha: 0,
+          ease: Power1.easeOut,
+        })
+        .to(
+          "#splashRing",
+          1.2,
+          {
+            attr: { r: 50 },
+            strokeWidth: 0,
+            ease: Power1.easeOut,
+          },
+          "-=1.2",
+        )
+        .to(
+          k,
+          3,
+          {
+            time: 2.33,
+            ease: Power2.easeOut,
+          },
+          "-=1.2",
+        )
+        .to(
+          l,
+          3.9,
+          {
+            time: 2.33,
+            ease: Power2.easeOut,
+          },
+          "-=2.9",
+        )
+        .staggerFrom(
+          "#merryGroup path",
+          0.9,
+          {
+            rotation: -95,
+            alpha: 0,
+            transformOrigin: "50% 150%",
+            ease: Elastic.easeOut.config(2, 0.8),
+          },
+          0.036,
+          "-=3.3",
+        )
+        .to(
+          m,
+          1,
+          {
+            time: 2.1,
+            ease: SlowMo.ease.config(0.1, 0.86, !1),
+          },
+          "-=2.9",
+        )
+        .to(
+          particleContainer,
+          1.4,
+          {
+            bezier: { type: "cubic", values: n, autoRotate: !1 },
+            onUpdate: function (a) {
+              a = particlePool[particleCount];
+              TweenMax.set(a, {
+                x: particleContainer._gsTransform.x,
+                y: particleContainer._gsTransform.y,
+                scale: d(1, 15) / 10,
+                transformOrigin: "50% 50%",
+              });
+              // new TimelineMax().to(a, d(3, 6), {
+              //   physics2D: {
+              //     velocity: d(5, 10),
+              //     angle: 0,
+              //     gravity: d(23, 577),
+              //   },
+              //   scale: 0,
+              //   rotation: d(180, 780),
+              //   onStart: function (a) {
+              //     TweenMax.killTweensOf(a, { opacity: !0 });
+              //     TweenMax.fromTo(
+              //       a,
+              //       0.7,
+              //       { alpha: 1 },
+              //       {
+              //         alpha: Math.random(),
+              //         ease: RoughEase.ease.config({
+              //           template: Power0.easeNone,
+              //           strength: 3,
+              //           points: 6,
+              //           taper: "both",
+              //           randomize: !0,
+              //           clamp: !1,
+              //         }),
+              //         repeat: -1,
+              //       },
+              //     );
+              //   },
+              //   onStartParams: [a],
+              // });
+              particleCount++;
+              particleCount = particleCount >= numParticles ? 0 : particleCount;
+            },
+            ease: Linear.easeNone,
+          },
+          "-=4",
+        )
+        .from(
+          "#letterI",
+          0.76,
+          {
+            y: -200,
+            alpha: 0,
+            ease: Power4.easeIn,
+          },
+          "-=2.7",
+        )
+        .from(
+          "#letterI",
+          1,
+          {
+            rotation: 23,
+            transformOrigin: "50% 100%",
+            ease: Elastic.easeOut.config(1, 0.3),
+          },
+          "-=2.2",
+        )
+        .staggerTo(
+          selectAll(".endFlake"),
+          0.6,
+          {
+            cycle: {
+              x: [-10, 0, 10],
+              y: [200, 100, 300],
+              transformOrigin: ["50% 50%", "50% 150%"],
+            },
+            alpha: 0,
+            rotation: d(200, 360),
+            ease: SlowMo.ease.config(0.1, 0.4, !1),
+          },
+          0.02,
+          "-=1.95",
+        )
+        .staggerTo("#merryGroup *", 0.6, { alpha: 0 }, 0.05)
+        .to("#letterI", 0.6, { alpha: 0 }, "-=0.6");
+      (function () {
+        for (var a = numParticles, b; -1 < --a; )
+          (b = document.createElementNS("http://www.w3.org/2000/svg", "use")),
+            b.setAttributeNS(
+              "http://www.w3.org/1999/xlink",
+              "xlink:href",
+              particleTypeArray[a % particleTypeArray.length],
+            ),
+            mainSVG.appendChild(b),
+            b.setAttributeNS(
+              null,
+              "fill",
+              particleColorArray[a % particleColorArray.length],
+            ),
+            b.setAttributeNS(null, "opacity", 0),
+            b.setAttribute("class", "particle"),
+            particlePool.push(b);
+      })();
+      f(100, strokeMask1, q, k);
+      f(100, strokeMask2, n, l);
+      f(100, strokeMask3, r, m);
+      e.timeScale(0.8);
+      TweenMax.delayedCall(2, function () {
+        e.play();
+      });
+    })();
+  </script>
+</html>

@@ -1,0 +1,73 @@
+{
+  "name": "christmas-greeting",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://reshinto.github.io/christmas-greeting",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll",
+    "test:nowatch": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "code:check": "yarn code:lint; yarn code:format --check",
+    "code:clean": "yarn code:lint --fix; yarn code:format --write",
+    "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\"",
+    "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}'",
+    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "precommit": "lint-staged",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "prepare": "husky install"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,tsx,json,scss}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/*.{ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "~4.1.5"
+  },
+  "devDependencies": {
+    "eslint": "7.31.0",
+    "gh-pages": "^3.2.3",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "poetic": "^1.6.0",
+    "postcss-normalize": "^10.0.0",
+    "prettier": "2.3.2"
+  }
+}
